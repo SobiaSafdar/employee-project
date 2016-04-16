@@ -6,7 +6,7 @@
 <?php if (!isset($no_visible_elements) || !$no_visible_elements) { ?>
     <hr>
     <footer class="row">
-        <p class="col-md-6 col-sm-6 col-xs-9 copyright">&nbsp;&nbsp;&copy; <a href="" target="_blank">Muhammad Nauman</a>  <?php echo date('Y') ?></p>
+        <p class="col-md-6 col-sm-6 col-xs-9 copyright">&nbsp;&nbsp;&copy; <a href="http://www.indubalfriction.com/" target="_blank">www.indubalfriction.com</a>  <?php echo date('Y') ?></p>
   </footer>
 <?php } ?>
 
@@ -42,6 +42,7 @@
 <script src="<?php echo SITE_ADDRESS; ?>js/jquery.history.js"></script>
 <!-- application script for Charisma demo -->
 <script src="<?php echo SITE_ADDRESS; ?>js/charisma.js"></script>
+
 
 
 </body>

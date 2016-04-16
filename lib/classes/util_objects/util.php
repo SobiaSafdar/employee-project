@@ -31,7 +31,7 @@ class util
 //or die("Error in the consult.." . mysqli_error($link));
 //              $strQuery."<br> execute query";
 //             
-//            echo $strQuery;
+//           echo $strQuery;
 //
 //             echo "<br/>";
             mysqli_query($link,$strQuery) ;
