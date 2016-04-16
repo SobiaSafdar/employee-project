@@ -2,9 +2,7 @@
 include (dirname(__FILE__).'/../lib/include.php');
 include (dirname(__FILE__).'/../lib/header.php'); 
 $objHoliday =new Holiday();
-
-$holiday_list=$objHoliday->GetAllHoliday("1 order by title",array("*"));
-      
+$holiday_list     =  $objHoliday->GetAllHoliday("1 order by title",array("*"));
 if(isset($_REQUEST['del']))	
 {	
    $del = $objHoliday->DeleteHoliday($_REQUEST['del']);
@@ -27,42 +25,20 @@ if(isset($_REQUEST['del']))
 </script>
 
  <link href="<?php echo SITE_ADDRESS; ?>bower_components/datatables/media/css/demo_table_1.css" rel="stylesheet">
-<div>
-    <ul class="breadcrumb">
-        <li>
-            <a href="<?php echo SITE_ADDRESS; ?>dashboard.php">Home</a>
-        </li>
-        <li>
-            <a class="add_holiday" href="<?php echo SITE_ADDRESS; ?>employee/add_holiday.php">Add</a>
-        </li>
-        <li>
-            <a href="<?php echo SITE_ADDRESS; ?>employee/emp_list.php">Holiday List</a>
-        </li>
-    </ul>
-</div>
-
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
                 <h2><i class="glyphicon glyphicon-star-empty"></i>Holiday List</h2>
-                <div class="box-icon">
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>
             </div>
             
-           <div class="box-content">
-
-    <p style="text-align: left;">
-        <a class="btn btn-warning add_holiday" href="<?php echo SITE_ADDRESS; ?>employee/add_holiday.php"><i class="glyphicon icon-white"></i>Add Holiday</a>
-    </p>  
-    
-     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <div class="box-content">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" style="font-size: 12px;">
   
          <thead>
     <tr>
         <th>Title</th>
+        <th>Type</th>
         <th>Date</th>
         <th width="20%">Actions</th>
     </tr>
@@ -72,6 +48,7 @@ if(isset($_REQUEST['del']))
         
     <tr>
         <td><?php echo $holiday['title']; ?></td>
+        <td><?php echo $holiday['type']; ?></td>
         <td><?php echo $holiday['date']; ?></td>
         <td class="center">            
             <a class="btn btn-info btn-sm add_holiday" href="add_holiday.php?update=<?php echo $holiday['id']; ?>">

@@ -77,7 +77,7 @@ if(isset($_REQUEST['del']))
  <link href="<?php echo SITE_ADDRESS; ?>bower_components/datatables/media/css/demo_table_1.css" rel="stylesheet">            
 <div class="box-content">
    <br>
-    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" >
+   <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" style=" font-size: 12px;" >
     <thead>
     <tr>
 <!--        <th>ID</th>-->

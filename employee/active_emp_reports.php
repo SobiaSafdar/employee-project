@@ -20,7 +20,7 @@ $employee_list=$objEmployee->GetAllEmployee(" emp_status=0 order by emp_name ",a
     <div class="box-content">    
     
         <br>
-    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" style="font-size: 12px;">
         <thead>
         <tr>
             <th>Ficha</th>

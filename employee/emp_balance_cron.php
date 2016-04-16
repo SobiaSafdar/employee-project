@@ -3,6 +3,8 @@ include (dirname(__FILE__).'/../lib/include.php');
 include (dirname(__FILE__).'/../lib/header.php'); 
 $objTransaction =new Transaction();
 $objEmployee = new Employee();
+$obj=new Queries();
+$employee_list=$obj->select("alpp_emp","1 order by emp_name",array("*"));
 ?>
 <script>
     $(document).ready(function(){
@@ -22,16 +24,7 @@ $objEmployee = new Employee();
             
             
            <div class="box-content">
-     <br>
-<?php 
-      $obj=new Queries();
-      $employee_list=$obj->select("alpp_emp","1 order by emp_name",array("*"));
-
- 
-?>
-      
-        
-        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" style="font-size: 12px;">
  <thead>
     <tr>
         <th>Ficha</th>

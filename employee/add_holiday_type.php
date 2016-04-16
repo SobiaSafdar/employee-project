@@ -2,16 +2,10 @@
 include ('../lib/include.php');
 include('../lib/modal_header.php');
 $objHoliday =new Holiday();
-$holidaytype_list=$objHoliday->GetAllHolidaytype("1 order by type",array("*"));
 
 if(isset($_REQUEST['update_button']))  // update code
 {
-    $submit=$objHoliday->UpdateHoliday("id=".$_REQUEST['update'],
-                array(
-                    'type'  => $_REQUEST['type'],
-                    'title'  => $_REQUEST['title'],
-                    'date'   => $_REQUEST['date']
-                    ));
+    $submit=$objHoliday->UpdateHolidaytype("id=".$_REQUEST['update'],array('type'  => $_REQUEST['type']));
         if($submit )
 	{
             $message_type="alert-success"; 
@@ -19,26 +13,21 @@ if(isset($_REQUEST['update_button']))  // update code
 	} 
         else
         {
-            $message_type="alert-warning"; 
+            $message_type="alert-error"; 
             $message_text = "<strong>Error!</strong> Employee Detail not Updated.";
         }
 }
 
  if(isset($_REQUEST['submit']))  /// insert code
 {
-   $submit=$objHoliday->InsertHoliday(
-           array(
-                    'type'  => $_REQUEST['type'],
-                    'title'  => $_REQUEST['title'],
-                    'date'   => $_REQUEST['date']
-            ));
+   $submit=$objHoliday->InsertHolidaytype(array('type'  => $_REQUEST['type'] ));
     if($submit)
     {        
         $message_type="alert-success"; 
         $message_text = "<strong>Success!</strong> Holiday Detail Submitted.";
     }
     else{ 
-        $message_type="alert-error"; 
+        $message_type="alert-warning"; 
         $message_text = "<strong>Error!</strong> Holiday Detail not Submitted ,Please try again.";
 
     }
@@ -46,14 +35,14 @@ if(isset($_REQUEST['update_button']))  // update code
 if(isset($_REQUEST['view']) || isset($_REQUEST['update']))	
 {	
     if($_REQUEST['view']) $id = $_REQUEST['view'];  else  $id = $_REQUEST['update'];
-    $holiday_list=$objHoliday->GetAllHoliday(" id=$id order by title",array("*"));
+    $holiday_list=$objHoliday->GetAllHolidaytype(" id=$id order by type",array("*"));
 }
 ?>
 <div class="row">
     <div class="box col-md-9">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-star-empty"></i> Add Holiday</h2>
+                <h2><i class="glyphicon glyphicon-star-empty"></i> Add Holiday Type</h2>
             </div>
             
 <div class="box-content">
@@ -75,50 +64,27 @@ if(isset($_REQUEST['view']) || isset($_REQUEST['update']))
     <div class="form-group">
         <label class="control-label col-sm-2">Holiday Type</label>
         <div class="col-sm-4">          
-            <select name="type" class="form-control">
-                <?php foreach($holidaytype_list as $type){  
-                    $sel=($holiday_list[0]['type']==$type['id'])? 'selected': '';?>
-                
-                    <option value="<?php echo $type['id'];?>" <?php echo $sel;  ?>><?php echo $type['type'];?></option>
-                <?php   }   ?>
-            </select>
+            <input type="text" class="form-control" value="<?php echo $holiday_list[0]['type']; ?>" placeholder="Type" name="type">
         </div>
     </div>
-
-    <div class="form-group">
-        <label class="control-label col-sm-2">Holiday Title</label>
-        <div class="col-sm-4">          
-            <input type="text" class="form-control" value="<?php echo $holiday_list[0]['title']; ?>" placeholder="Title" name="title">
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <label class="control-label col-sm-2">Date</label>                     
-            <div class="col-sm-4">
-               <input type="text" id="date" class="form-control" value="<?php echo $holiday_list[0]['date']; ?>" name="date">
-            </div>
-    </div>
-
   
 <?php if(isset($_REQUEST['view']))	{  ?>                   
 <?php } else if(isset($_REQUEST['update']))	{  ?>
        <div class="form-group">        
-                        <div class="col-sm-offset-4 col-sm-4">
-                            <button type="submit" name="update_button" class="btn btn-small btn-block btn-error">Update</button>
-                         </div>
-                    </div>  
+            <div class="col-sm-offset-4 col-sm-4">
+                <button type="submit" name="update_button" class="btn btn-small btn-block btn-error">Update</button>
+             </div>
+        </div>  
 <?php } else {     ?>         
        <div class="form-group">        
-                        <div class="col-sm-offset-4 col-sm-4">
-                            <button type="submit" name="submit" class="btn btn-small btn-block btn-error">Save</button>
-                         </div>
-                    </div>  
-
+            <div class="col-sm-offset-4 col-sm-4">
+                <button type="submit" name="submit" class="btn btn-small btn-block btn-error">Save</button>
+             </div>
+        </div>  
 <?php }?>
-                    <br>
+         <br>
 </form>
-
-            </div>
+       </div>
         </div>
     </div>
     <!--/span-->
