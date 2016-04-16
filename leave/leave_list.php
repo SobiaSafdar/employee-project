@@ -54,20 +54,7 @@ function action(action_status,id){
             $(".status_leave").colorbox({iframe:true, width:"40%", height:"50%"});
     });
 </script>
-
-
  <link href="<?php echo SITE_ADDRESS; ?>bower_components/datatables/media/css/demo_table_1.css" rel="stylesheet">
-
- 
-
-<div>
-    <ul class="breadcrumb">
-        <li>
-            <a href="<?php echo SITE_ADDRESS; ?>dashboard.php">Home</a>
-        </li>
-        <li> Leave List  </li>
-    </ul>
-</div>
 <?php if($message_type){ ?>
      <div class="widget-body">
         <div class="alert <?php echo $message_type;?>">
@@ -86,13 +73,9 @@ function action(action_status,id){
             </div>
             
 
-            <div class="box-content">
-                     <p style="text-align: left;">
-                         <a class="add_leave" href="<?php echo SITE_ADDRESS; ?>leave/add_leave.php"><button class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-star icon-white"></i>Apply For Leave</button></a> 
-                     </p>
-
-                     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" style=" font-size: 12px">
-  <thead>
+<div class="box-content">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" style=" font-size: 12px">
+    <thead>
     <tr>
         <th>Ficha</th>
         <th>Nombre</th>
