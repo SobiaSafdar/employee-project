@@ -8,7 +8,7 @@ include('lib/header.php');
 require_once "lib/classes/util_objects/util.php";
 require_once "lib/classes/business_objects/Queries.php";
 $obj=new Queries();
-?>
+ ?>
 
 <script>
     $(document).ready(function(){
@@ -33,21 +33,29 @@ $obj=new Queries();
  <?php
  if(isset($_REQUEST['submit']))
  {
-      if(!isset($_REQUEST['employee']))               
-      {
-          $get_user=   $obj->select("alpp_adminlog","adminlog_email='".$_REQUEST['email']."' and adminlog_password='".$_REQUEST['password']."'",  array("*"));
-      
-                    if($get_user)
-                                {
-		 			$_SESSION['session_admin_role']		=	'admin';	
-					$_SESSION['session_admin_id']		=	$get_user[0]['adminlog_id'];	
-					$_SESSION['session_admin_email']	=	$get_user[0]['adminlog_email'];	
-					$_SESSION['session_admin_name']		=	$get_user[0]['adminlog_name'];	
-				
-					  header("Location: dashboard.php");	
-                                }
-    					else $error='Wrong Login Credentials for Admin';				
-     }
+    if(!isset($_REQUEST['employee']))               
+    {
+        $get_user=   $obj->select("alpp_adminlog","adminlog_email='".$_REQUEST['email']."' and adminlog_password='".$_REQUEST['password']."'",  array("*"));
+        if($get_user){
+            $_SESSION['session_admin_role']		=	'admin';	
+            $_SESSION['session_admin_id']		=	$get_user[0]['adminlog_id'];	
+            $_SESSION['session_admin_email']            =	$get_user[0]['adminlog_email'];	
+            $_SESSION['session_admin_name']		=	$get_user[0]['adminlog_name'];	
+            header("Location: dashboard.php");	
+        }
+        else   {
+            $get_user=   $obj->select("alpp_emp"," ( emp_cellnum='".$_REQUEST['email']."' or emp_email='".$_REQUEST['email']."') and emp_password='".$_REQUEST['password']."'",  array("*"));
+            if($get_user)
+            {
+                $_SESSION['session_admin_role']		=	'admin';	
+                $_SESSION['session_admin_id']		=	$get_user[0]['emp_id'];	
+                $_SESSION['session_admin_email']	=	$get_user[0]['emp_email'];	
+                $_SESSION['session_admin_name']		=	$get_user[0]['emp_name'];	
+                header("Location: dashboard.php");	
+            }
+            else $error='Wrong Login Credentials for Admin';				
+        }
+    }
      else
      {
          if($_REQUEST['email']) 
